@@ -5,8 +5,9 @@ public class LinkedList<T> implements List<T> {
 		public T data;
 		public Node<T> next;
 		
-		public Node(T data) {
-			this(data, null);
+		public Node(T d) {
+			this.data = d;
+			this.next = null;
 		}
 		
 		public Node(T data, Node<T> next) {
@@ -23,18 +24,25 @@ public class LinkedList<T> implements List<T> {
 		first = null;
 	}
 
+	@Override
 	public void add(T v) {
 		Node<T> end = new Node<T>(v);
+		Node<T> cur = first;
+		
 		if (first != null) {
-			Node<T> cur = first;
 			while (cur.next != null) {
 				cur = cur.next; 
 			}
+			end.data = v;
+			end.next = cur;
 		} else {
-			first = end;
+			end.data = v;
+			end.next = first;
+			//first = end;
 		}
 	}
 
+	@Override
 	public int size() 
 	{
 		int counter = 0;
@@ -43,26 +51,32 @@ public class LinkedList<T> implements List<T> {
 			while (cur.next != null) {
 				cur = cur.next;
 				counter++;
-			}}
-			return counter;
+			}
 		}
+		return counter;
+	}
 
+	@Override
 	public boolean remove(int index) {
 		return false;
 	}
 
+	@Override
 	public void set(int index, T v) {
 		
 	}
 
+	@Override
 	public T get(int index) {
 		return null;
 	}
 
+	@Override
 	public void clear() {
 		first = null;
 	}
 
+	@Override
 	public boolean contains(T v) {
 		if (first != null) {
 			Node<T> cur = first;
@@ -77,6 +91,7 @@ public class LinkedList<T> implements List<T> {
 		return false;
 	}
 
+	@Override
 	public int indexOf(T v) {
 		int counter = 0;
 		if (first != null) {
@@ -89,22 +104,29 @@ public class LinkedList<T> implements List<T> {
 					cur = cur.next;
 				}
 				
-			}}
-			return counter;
+			}
 		}
+			return counter;
+	}
 
+	@Override
 	public boolean isEmpty() {
 		if (first != null) {
+			return true;
+		}
+		else 
 			return false;
 		}
-		else return false;
-		}
 
-public void main(String[] args){
+public static void main(String[] args){
 	//int[] array = {6,1,3,5,7,2,9,6};
 	
-	Node<Integer> testNode = new Node<Integer>(44);
-	add(<Integer> 44);
+	//Node<Integer> testNode = new Node<Integer>(44);
+	LinkedList<Integer> test = new LinkedList<Integer>();
+	test.add(44);
+	test.add(10);
+	test.add(100);
+	System.out.println(test.size());
 	//testNode.linkedlist;
 	
 	}
