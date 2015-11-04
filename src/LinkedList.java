@@ -1,7 +1,8 @@
 
 public class LinkedList<T> implements List<T> {
 	
-	public class Node<T> {
+public class Node<T> {
+		
 		public T data;
 		public Node<T> next;
 		
@@ -21,26 +22,27 @@ public class LinkedList<T> implements List<T> {
 	
 	// constructor for linkedlist. Java will auto set first to null if constructor is not available.
 	public LinkedList() {
-		first = null;
+		first = new Node<T>(null);
 	}
 
 	@Override
 	public void add(T v) {
 		Node<T> end = new Node<T>(v);
-		Node<T> cur = first;
-		
-		if (first != null) {
+		cur = first;
+
+		//if (first != null) {
 			while (cur.next != null) {
 				cur = cur.next; 
 			}
-			end.data = v;
-			end.next = cur;
+			cur.next =end;
+	}
+/*
 		} else {
 			end.data = v;
-			end.next = first;
+			first = end.next;
 			//first = end;
 		}
-	}
+		*/
 
 	@Override
 	public int size() 
