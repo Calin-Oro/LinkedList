@@ -17,12 +17,13 @@ public class Node<T> {
 		}
 	}
 	
-	private Node<T> first;
+	private Node<T> first = new Node<T>(null);
 	private Node<T> cur;
 	
 	// constructor for linkedlist. Java will auto set first to null if constructor is not available.
 	public LinkedList() {
 		first = new Node<T>(null);
+		//first = null;
 	}
 
 	@Override
@@ -36,20 +37,14 @@ public class Node<T> {
 			}
 			cur.next =end;
 	}
-/*
-		} else {
-			end.data = v;
-			first = end.next;
-			//first = end;
-		}
-		*/
+
 
 	@Override
 	public int size() 
 	{
 		int counter = 0;
 		if (first != null) {
-			Node<T> cur = first;
+			cur = first;
 			while (cur.next != null) {
 				cur = cur.next;
 				counter++;
@@ -58,32 +53,48 @@ public class Node<T> {
 		return counter;
 	}
 
+	//unimp
 	@Override
 	public boolean remove(int index) {
 		return false;
 	}
 
+	//unimp
 	@Override
 	public void set(int index, T v) {
 		
 	}
 
+	// gen pwoblem bo isit
 	@Override
 	public T get(int index) {
-		return null;
+
+		int counter = 0;
+		if (first != null) {
+			cur = first;
+			while (cur.next != null) {
+				cur = cur.next;
+				counter++;
+
+				if (counter == index){
+					return cur.data;
+				}
+			}
+		}
+		throw new IndexOutOfBoundsException();
 	}
 
 	@Override
 	public void clear() {
-		first = null;
+		first.next = null;
 	}
 
 	@Override
 	public boolean contains(T v) {
 		if (first != null) {
-			Node<T> cur = first;
+			cur = first;
 			while (cur != null) {
-				if (cur == v){
+				if (cur.data == v){
 					return true;
 				} else {
 					cur = cur.next;
@@ -97,23 +108,24 @@ public class Node<T> {
 	public int indexOf(T v) {
 		int counter = 0;
 		if (first != null) {
-			Node<T> cur = first;
-			while (cur.next != null) {
-				if (cur == v){
+			cur = first;
+			while (cur != null) 
+			{
+				if (cur.data == v){
 					return counter;
-				} else {
+				} else 
+				{
 					counter++;
 					cur = cur.next;
 				}
-				
 			}
 		}
-			return counter;
+		return -1;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		if (first != null) {
+		if (first.next == null) {
 			return true;
 		}
 		else 
@@ -125,11 +137,25 @@ public static void main(String[] args){
 	
 	//Node<Integer> testNode = new Node<Integer>(44);
 	LinkedList<Integer> test = new LinkedList<Integer>();
+	System.out.println(test.isEmpty());
 	test.add(44);
-	test.add(10);
-	test.add(100);
 	System.out.println(test.size());
-	//testNode.linkedlist;
+	System.out.println(test.isEmpty());
+	test.add(10);
+	test.add(100); 
+	System.out.println(test.size());
+	System.out.println(test.contains(44));
+	System.out.println(test.contains(100));
+	System.out.println(test.contains(474));
+	System.out.println(test.indexOf(474));
+	System.out.println(test.indexOf(100));
+	System.out.println(test.indexOf(10));
+	test.clear();
+	System.out.println("Clearing list");
+	System.out.println(test.indexOf(10));
+	System.out.println(test.isEmpty());
+	//System.out.println(test.get(1));
+	
 	
 	}
 }
